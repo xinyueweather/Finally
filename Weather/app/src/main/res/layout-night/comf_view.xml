@@ -5,7 +5,8 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:theme="@style/NightTheme">
     <TextView
         android:id="@+id/comTit"
         android:layout_width="match_parent"

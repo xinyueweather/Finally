@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".activity.HomePageActivity">
+    tools:context=".activity.HomePageActivity"
+    android:theme="@style/NightTheme">
 
     <LinearLayout
     android:layout_width="match_parent"

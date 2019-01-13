@@ -4,7 +4,8 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_marginLeft="16dp"
 android:layout_marginRight="16dp"
 android:layout_width="match_parent"
-android:layout_height="wrap_content">
+android:layout_height="wrap_content"
+    android:theme="@style/NightTheme">
 <TextView
     android:id="@+id/airTit"
     android:layout_width="match_parent"
