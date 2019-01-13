@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
@@ -21,11 +23,18 @@ import com.example.admin.xinyueapp.adapter.WeatherAdapter;
 
 import com.example.admin.xinyueapp.entity.Alist;
 
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.gson.Gson;
@@ -55,97 +64,29 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 
 public class HomePageActivity extends StartActivity {
-    boolean flag=false;
-    boolean flag2=false;
-
-    private  Handler handle = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            if(msg.what==1) {
-                flag = true;
-                Log.i("Log","onWHAT 2  1"+flag);
-            }
-            if(msg.what==2 ) {
-                flag2 = true;
-                Log.i("Log", "onWHAT 2  2" + flag2);
-
-            }
-            if(flag == true && flag2 == true){
-                ArrayList<String> als = msg.getData().getStringArrayList("air");
-                Log.i("Log","onWHAT 2"+als);
-                for(int i=0;i<als.size();i++){
-                    Log.i("Log","onWHAT 2: "+i+"  "+als.get(i));
-                }
-                TextView tv = (TextView)findViewById(R.id.airQui);
-                String qlty=als.get(6);
-                tv.setText(qlty);
-
-                TextView pt = (TextView)findViewById(R.id.updateT);
-                String ppt = als.get(7).substring(10);
-                pt.setText("发布时间: "+ppt);
-
-                TextView aqi = (TextView)findViewById(R.id.Aqi);
-                String Aqi = als.get(0);
-                aqi.setText(Aqi);
-
-                int a = Integer.parseInt(Aqi);
-                if(a>=0 && a<=50){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi1);
-                }else if(a>=51 && a<=100){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi2);
-                }
-                else if(a>=101 && a<=150){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi3);
-                }else if(a>=151 && a<=200){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi4);
-                }else if(a>=201 && a<=300){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi5);
-                }else if(a > 300){
-                    ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.aqi6);
-                }
-                TextView pm = (TextView)findViewById(R.id.Pm);
-                String Pm = als.get(1);
-                pm.setText(Pm);
-
-                TextView no = (TextView)findViewById(R.id.NO);
-                String NO = als.get(2);
-                no.setText(NO);
-
-                TextView so = (TextView)findViewById(R.id.SO);
-                String SO = als.get(3);
-                so.setText(SO);
-
-                TextView o = (TextView)findViewById(R.id.O);
-                String O = als.get(4);
-                o.setText(O);
-
-                TextView co = (TextView)findViewById(R.id.CO);
-                String CO = als.get(5);
-                co.setText(CO);
+    boolean flag = false;
+    boolean flag2 = false;
 
 
-            }
-        }
-    };
     private RecyclerView mWeatherRv;
     static WeatherAdapter addapter = new WeatherAdapter();
 
     @Override
     protected void onNewIntent(Intent intent) {
 
-        if(intent.getStringExtra("cid")!=null)
-        {
+        if (intent.getStringExtra("cid") != null) {
             getWeather(intent.getStringExtra("cid"));
         }
         super.onNewIntent(intent);
+    }
+
+    private void showToast(Context context,String text){
+        Toast toast = Toast.makeText(context,text,Toast.LENGTH_SHORT);
+        WindowManager wm = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+        Point size = new Point();
+        wm.getDefaultDisplay().getSize(size);
+        toast.setGravity(Gravity.TOP,0,size.y / 18);
+        toast.show();
     }
 
     @Override
@@ -153,7 +94,6 @@ public class HomePageActivity extends StartActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
 
         //添加城市
         Button addCity = (Button) findViewById(R.id.addCity);
@@ -164,9 +104,24 @@ public class HomePageActivity extends StartActivity {
                 startActivity(intent);
             }
         });
+        //刷新页面
+        ImageButton fflush = (ImageButton) findViewById(R.id.fflush);
+        fflush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                String cid = ((TextView) findViewById(R.id.showCity)).getText().toString();
+                intent.putExtra("cid", cid);
+                startActivity(intent);
+                showToast(HomePageActivity.this,"界面已刷新");
+               // Toast toast=Toast.makeText(HomePageActivity.this, "界面已刷新", Toast.LENGTH_LONG);
+
+              //  toast.show();
+            }
+        });
 
         //进入设置
-        Button settings = (Button)findViewById(R.id.setting);
+        Button settings = (Button) findViewById(R.id.setting);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,23 +146,25 @@ public class HomePageActivity extends StartActivity {
         HeConfig.init(this.getString(R.string.id), this.getString(R.string.key));
         HeConfig.switchToFreeServerNode();
 
-        SharedPreferences sp = getSharedPreferences("CID",MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("CID", MODE_PRIVATE);
         //读取数据
         Set<String> sdata;
-        sdata = sp.getStringSet("cid",null);
+        sdata = sp.getStringSet("cid", null);
 
-        if(sdata==null){
+        if (sdata == null) {
             getWeather("北京");
-        }else{
-            String[] cid = (String[])sdata.toArray(new String[sdata.size()]);
-            Log.i("Log","onSdata.cid"+cid.length);
+        } else {
+            String[] cid = (String[]) sdata.toArray(new String[sdata.size()]);
+            Log.i("Log", "onSdata.cid" + cid.length);
             getWeather(cid[0]);
         }
 
     }
 
+
     /**
      * 获得天气详情
+     *
      * @param location
      * @return
      */
@@ -219,7 +176,7 @@ public class HomePageActivity extends StartActivity {
 
             @Override
             public void onSuccess(List<Weather> list) {
-                Log.i("Log","onWe "+ list);
+                Log.i("Log", "onWe " + list);
                 final List<Object> arrays_obj = new ArrayList<>();
                 Alist.MyDataList.NowList nl = new Alist.MyDataList.NowList();
                 nl.setNowCondTxt(list.get(0).getNow().getCond_txt());
@@ -229,7 +186,7 @@ public class HomePageActivity extends StartActivity {
 
                 arrays_obj.add(nl);
 
-                TextView lo = (TextView)findViewById(R.id.showCity);
+                TextView lo = (TextView) findViewById(R.id.showCity);
                 lo.setText(list.get(0).getBasic().getLocation());
 
                 //每小时温度
@@ -299,7 +256,6 @@ public class HomePageActivity extends StartActivity {
                 arrays_obj.add(cl);
 
 
-
                 Alist.MyDataList.WindList wl = new Alist.MyDataList.WindList();
                 wl.setWindDir(list.get(0).getDaily_forecast().get(0).getWind_dir());
                 wl.setWindSc(list.get(0).getDaily_forecast().get(0).getWind_sc());
@@ -314,7 +270,7 @@ public class HomePageActivity extends StartActivity {
                 addapter.setData(arrays_obj);
                 mWeatherRv.setAdapter(addapter);
                 Message msg = new Message();
-                msg.what=1;
+                msg.what = 1;
                 handle.sendMessage(msg);
                 getAir(location);
             }
@@ -322,19 +278,20 @@ public class HomePageActivity extends StartActivity {
         return true;
     }
 
-    private void getAir(String location){
+    private void getAir(String location) {
         HeWeather.getAir(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultAirBeanListener() {
             @Override
             public void onError(Throwable throwable) {
             }
+
             @Override
             public void onSuccess(List<Air> list) {
-                Log.i("Log","onAir"+new Gson().toJson(list));
+                Log.i("Log", "onAir" + new Gson().toJson(list));
 
                 Bundle b = new Bundle();
-               // String ss = list.get(0).getAir_now_city().getQlty();
-               // String aqi = list.get(0).getAir_now_city().getAqi();
-                ArrayList<String> record=new ArrayList<>();
+                // String ss = list.get(0).getAir_now_city().getQlty();
+                // String aqi = list.get(0).getAir_now_city().getAqi();
+                ArrayList<String> record = new ArrayList<>();
                 record.add(list.get(0).getAir_now_city().getAqi());
                 record.add(list.get(0).getAir_now_city().getPm25());
                 record.add(list.get(0).getAir_now_city().getNo2());
@@ -343,14 +300,89 @@ public class HomePageActivity extends StartActivity {
                 record.add(list.get(0).getAir_now_city().getCo());
                 record.add(list.get(0).getAir_now_city().getQlty());
                 record.add(list.get(0).getAir_now_city().getPub_time());
-                b.putStringArrayList("air",record);
+                b.putStringArrayList("air", record);
 
-                Message msg=new Message();
+                Message msg = new Message();
                 msg.setData(b);
-                msg.what=2;
+                msg.what = 2;
                 handle.sendMessage(msg);
             }
         });
     }
 
+    private  Handler handle = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if(msg.what==1) {
+                flag = true;
+                Log.i("Log","onWHAT 2  1"+flag);
+            }
+            if(msg.what==2 ) {
+                flag2 = true;
+                Log.i("Log", "onWHAT 2  2" + flag2);
+
+                // }
+                //   if(flag == true && flag2 == true){
+                ArrayList<String> als = msg.getData().getStringArrayList("air");
+                Log.i("Log","onWHAT 2"+als);
+                for(int i=0;i<als.size();i++){
+                    Log.i("Log","onWHAT 2: "+i+"  "+als.get(i));
+                }
+                TextView tv = (TextView)findViewById(R.id.airQui);
+                String qlty=als.get(6);
+                tv.setText(qlty);
+
+                TextView pt = (TextView)findViewById(R.id.updateT);
+                String ppt = als.get(7).substring(10);
+                pt.setText("发布时间: "+ppt);
+
+                TextView aqi = (TextView)findViewById(R.id.Aqi);
+                String Aqi = als.get(0);
+                aqi.setText(Aqi);
+
+                int a = Integer.parseInt(Aqi);
+                if(a>=0 && a<=50){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi1);
+                }else if(a>=51 && a<=100){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi2);
+                }
+                else if(a>=101 && a<=150){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi3);
+                }else if(a>=151 && a<=200){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi4);
+                }else if(a>=201 && a<=300){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi5);
+                }else if(a > 300){
+                    ImageView iv = (ImageView)findViewById(R.id.aI);
+                    iv.setImageResource(R.drawable.aqi6);
+                }
+                TextView pm = (TextView)findViewById(R.id.Pm);
+                String Pm = als.get(1);
+                pm.setText(Pm);
+
+                TextView no = (TextView)findViewById(R.id.NO);
+                String NO = als.get(2);
+                no.setText(NO);
+
+                TextView so = (TextView)findViewById(R.id.SO);
+                String SO = als.get(3);
+                so.setText(SO);
+
+                TextView o = (TextView)findViewById(R.id.O);
+                String O = als.get(4);
+                o.setText(O);
+
+                TextView co = (TextView)findViewById(R.id.CO);
+                String CO = als.get(5);
+                co.setText(CO);
+            }
+        }
+    };
 }
