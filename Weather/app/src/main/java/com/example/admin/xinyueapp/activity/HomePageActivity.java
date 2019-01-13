@@ -55,22 +55,25 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 
 public class HomePageActivity extends StartActivity {
+    boolean flag=false;
+    boolean flag2=false;
 
     private  Handler handle = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            boolean flag=false;
-            boolean flag2=false;
 
             if(msg.what==1) {
+                flag = true;
                 Log.i("Log","onWHAT 2  1"+flag);
             }
-            if(msg.what==2 ){
-                Log.i("Log","onWHAT 2  2"+flag2);
+            if(msg.what==2 ) {
+                flag2 = true;
+                Log.i("Log", "onWHAT 2  2" + flag2);
+
+            }
+            if(flag == true && flag2 == true){
                 ArrayList<String> als = msg.getData().getStringArrayList("air");
-
-
                 Log.i("Log","onWHAT 2"+als);
                 for(int i=0;i<als.size();i++){
                     Log.i("Log","onWHAT 2: "+i+"  "+als.get(i));
@@ -93,7 +96,7 @@ public class HomePageActivity extends StartActivity {
                     iv.setImageResource(R.drawable.aqi1);
                 }else if(a>=51 && a<=100){
                     ImageView iv = (ImageView)findViewById(R.id.aI);
-                    iv.setImageResource(R.drawable.w101);
+                    iv.setImageResource(R.drawable.aqi2);
                 }
                 else if(a>=101 && a<=150){
                     ImageView iv = (ImageView)findViewById(R.id.aI);

@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:gravity="center"
-                android:text="显示城市名" />
+                android:text="加载中...." />
 
             <Button
                 android:id="@+id/setting"
