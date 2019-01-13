@@ -26,6 +26,13 @@
             android:summary="开启后根据时间间隔后台自动获取天气数据"
             android:title="自动更新"/>
 
+        <SwitchPreference
+            android:id="@+id/night_mode"
+            android:key="automatic_update"
+            android:layout="@layout/setting_item"
+            android:summary="@string/night_mode_summary"
+            android:title="@string/night_mode"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

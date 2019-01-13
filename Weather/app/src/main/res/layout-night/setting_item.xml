@@ -34,7 +34,7 @@
             android:layout_height="20dp"
             android:layout_below="@android:id/title"
             android:text="summary"
-            android:textColor="#737373"
+            android:textColor="#aaaaaa"
             android:textSize="14sp"/>
 
     </RelativeLayout>

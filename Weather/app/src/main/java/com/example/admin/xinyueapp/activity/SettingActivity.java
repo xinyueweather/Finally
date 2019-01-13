@@ -19,7 +19,6 @@ public class SettingActivity extends StartActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
-        setContentView(R.layout.activity_setting);
         toolbar = (android.support.v7.widget.Toolbar) findViewById (R.id.toolbar_preference);
         FrameLayout mlinearLayout = (FrameLayout) findViewById(R.id.content_frame);
         initToolbar();
