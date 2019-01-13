@@ -24,6 +24,7 @@ public class SettingActivity extends StartActivity {
         initToolbar();
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new SettingFragment()).commit();
+
     }
 
     public void initToolbar(){
@@ -47,6 +48,5 @@ public class SettingActivity extends StartActivity {
         }
         return false;
     }
-
 
 }
