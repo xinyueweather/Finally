@@ -49,7 +49,7 @@
                 android:id="@+id/cI"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
-                android:src="@drawable/w303" />
+                android:src="@drawable/comfort" />
         </LinearLayout>
 
 
