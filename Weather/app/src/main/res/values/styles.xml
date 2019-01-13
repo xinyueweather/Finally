@@ -4,7 +4,7 @@
     <!-- Base application theme. -->
     <style name="ThemeSplash" parent="Theme.AppCompat.Light.NoActionBar">
         <!--<item name="android:background">@mipmap/ic_launcher</item>-->
-        <item name="android:windowBackground">@drawable/startback</item>
+        <item name="android:windowBackground">@drawable/bgd3</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="windowActionBar">false</item>
