@@ -84,15 +84,15 @@ public class AddLocationActivity extends Activity implements SearchView.OnQueryT
                     editor.putStringSet("cid",sdata);
                 }*/
                 sdd.add(locations.get(position).getCid());
+                sdd.add(locations.get(position).getCity());
                 editor.clear();
                 editor.putStringSet("cid",sdd);
                 editor.apply();
-               // Log.d("xxxxxx",sp.getStringSet("cid",sdata));
-            //    Toast.makeText(AddLocationActivity.this, "您选择了第" + id + "个项目, 该地点是：" + locations.get(position).getLocation() + ", 它属于: " + locations.get(position).getAdmin() + ", 它的 cid 是: "+ locations.get(position).getCid(), Toast.LENGTH_LONG).show();
 
                 //页面跳转
                 Intent intent = new Intent(AddLocationActivity.this, HomePageActivity.class);
                 intent.putExtra("cid",locations.get(position).getLocation());
+                intent.putExtra("admin",locations.get(position).getCity());
                 startActivity(intent);
 
 

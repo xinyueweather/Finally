@@ -27,9 +27,7 @@ Switch nightSwitch;
         initToolbar();
         getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, new SettingFragment()).commit();
-        nightSwitch=(Switch)findViewById(R.id.switch_night);
-        //
-        nightSwitch.setOnCheckedChangeListener();
+
     }
 
     public void initToolbar(){

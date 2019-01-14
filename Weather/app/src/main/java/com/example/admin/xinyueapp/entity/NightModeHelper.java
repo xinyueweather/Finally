@@ -4,6 +4,8 @@ import java.lang.ref.WeakReference;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.Image;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 
 
@@ -108,7 +110,6 @@ public class NightModeHelper
                     .apply();
         }
     }
-
     public static int getUiNightMode()
     {
         return sUiNightMode;
@@ -123,13 +124,11 @@ public class NightModeHelper
             night();
         }
     }
-
     public void notNight()
     {
         updateConfig(Configuration.UI_MODE_NIGHT_NO);
         mActivity.get().recreate();
     }
-
     public void night()
     {
         updateConfig(Configuration.UI_MODE_NIGHT_YES);

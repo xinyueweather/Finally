@@ -76,7 +76,7 @@ public class HomePageActivity extends StartActivity {
     protected void onNewIntent(Intent intent) {
 
         if (intent.getStringExtra("cid") != null) {
-            getWeather(intent.getStringExtra("cid"));
+            getWeather(intent.getStringExtra("cid"),intent.getStringExtra("admin"));
         }
         super.onNewIntent(intent);
     }
@@ -153,12 +153,11 @@ public class HomePageActivity extends StartActivity {
         Set<String> sdata;
         sdata = sp.getStringSet("cid", null);
 
-        if (sdata == null) {
-            getWeather("北京");
-        } else {
+        if (sdata != null ) {
             String[] cid = (String[]) sdata.toArray(new String[sdata.size()]);
-            Log.i("Log", "onSdata.cid" + cid.length);
-            getWeather(cid[0]);
+            getWeather(cid[0], cid[1]);
+        } else {
+            getWeather("北京","北京");
         }
 
     }
@@ -170,7 +169,7 @@ public class HomePageActivity extends StartActivity {
      * @param location
      * @return
      */
-    private boolean getWeather(final String location) {
+    private boolean getWeather(final String location,final String admin) {
         HeWeather.getWeather(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherDataListBeansListener() {
             @Override
             public void onError(Throwable throwable) {
@@ -274,13 +273,14 @@ public class HomePageActivity extends StartActivity {
                 Message msg = new Message();
                 msg.what = 1;
                 handle.sendMessage(msg);
-                getAir(location);
+                getAir(admin);
             }
         });
         return true;
     }
 
     private void getAir(String location) {
+        Log.i("Log","onSdata1 "+location);
         HeWeather.getAir(this, location, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultAirBeanListener() {
             @Override
             public void onError(Throwable throwable) {
