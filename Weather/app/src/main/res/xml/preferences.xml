@@ -26,11 +26,18 @@
             android:summary="开启后根据时间间隔后台自动获取天气数据"
             android:title="自动更新"/>
 
-        <SwitchPreference
+        <!--SwitchPreference
             android:key="night_mode"
             android:layout="@layout/setting_item"
             android:summary="@string/night_mode_summary"
-            android:title="@string/night_mode"/>
+            android:title="@string/night_mode"/-->
+        <!--ListPreference
+            android:key="theme_pref_key"
+            android:dialogTitle="@string/pref_title_theme"
+            android:layout="@layout/setting_item"
+            android:title="@string/pref_title_theme"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values" /-->
 
     </PreferenceCategory>
 
@@ -44,7 +51,7 @@
         <Preference
             android:layout="@layout/setting_item"
             android:title="心悦天气项目小组"
-            android:summary="团队人员： 陈茜 崔晓晓 黄东尚 孙骄 虞海苓" />
+            android:summary="团队人员：陈茜 崔晓晓 黄东尚 孙骄 虞海苓" />
     </PreferenceCategory>
 
 
