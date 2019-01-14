@@ -10,7 +10,9 @@ android:layout_height="wrap_content">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="空气质量"
-    android:textSize="18sp" />
+    android:textSize="18sp"
+    android:textColor="@color/text"
+    />
 
     <LinearLayout
         android:id="@+id/subTil"
@@ -26,13 +28,17 @@ android:layout_height="wrap_content">
             android:layout_gravity="center"
             android:layout_weight="5"
             android:text="污染指数"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@color/text"
+            />
 
         <TextView
             android:id="@+id/Aqi"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -74,12 +80,16 @@ android:layout_height="wrap_content">
                 android:textSize="12sp"
                 android:text="PM2.5 "
                 android:layout_marginStart="32dp"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="@color/text"
+                />
             <TextView
                 android:id="@+id/Pm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/text"
+                />
 
         </LinearLayout>
         <LinearLayout
@@ -94,12 +104,16 @@ android:layout_height="wrap_content">
                 android:textSize="12sp"
                 android:text="NO2 "
                 android:layout_marginStart="32dp"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="@color/text"
+                />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/NO"/>
+                android:id="@+id/NO"
+                android:textColor="@color/text"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,12 +128,16 @@ android:layout_height="wrap_content">
                 android:textSize="12sp"
                 android:text="SO2 "
                 android:layout_marginStart="32dp"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="@color/text"
+                />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/SO"/>
+                android:id="@+id/SO"
+                android:textColor="@color/text"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -135,12 +153,16 @@ android:layout_height="wrap_content">
                 android:textSize="12sp"
                 android:text="03 "
                 android:layout_marginStart="32dp"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="@color/text"
+                />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/O"/>
+                android:id="@+id/O"
+                android:textColor="@color/text"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -155,12 +177,16 @@ android:layout_height="wrap_content">
                 android:textSize="12sp"
                 android:text="CO"
                 android:layout_marginStart="32dp"
-                android:gravity="start"/>
+                android:gravity="start"
+                android:textColor="@color/text"
+                />
             <TextView
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/CO"/>
+                android:id="@+id/CO"
+                android:textColor="@color/text"
+                />
         </LinearLayout>
     </LinearLayout>
 

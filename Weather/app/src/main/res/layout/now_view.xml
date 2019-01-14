@@ -15,7 +15,7 @@
         android:layout_weight="8"
         android:gravity="center"
         android:text="10℃"
-        android:textColor="#426286"
+        android:textColor="@color/temper"
         android:textSize="100sp" />
 
     <TextView
@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@color/text"
         android:gravity="center" />
 
     <TextView
@@ -30,12 +31,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@color/text"
         android:gravity="center"/>
     <TextView
         android:id="@+id/airQui"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="@color/text"
         android:gravity="center"/>
 
     <TextView
@@ -44,11 +47,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/updateT"
         android:textSize="8sp"
+        android:textColor="@color/text"
         android:gravity="left"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#000000">
+        android:background="@color/transparent">
     </View>
 </LinearLayout>
