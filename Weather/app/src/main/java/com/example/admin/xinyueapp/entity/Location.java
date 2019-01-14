@@ -7,6 +7,8 @@ public class Location {
     private String mAdmin;
     private String mCid;
     private String mCity;
+    private String mProvince;
+    private String mCid;
     public Location(String location , String city , String province , String cid){
         mLocation = location;
         mCity = city;
@@ -16,12 +18,12 @@ public class Location {
             mAdmin = province + " , " + city;
         mCid = cid;
     }
-    public String getCity(){
-        return mCity;
-    }
 
     public String getLocation(){
         return mLocation;
+    }
+    public String getCity(){
+        return mCity;
     }
 
     public String getCid() {

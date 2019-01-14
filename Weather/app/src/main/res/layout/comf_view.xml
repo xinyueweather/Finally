@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="舒适度"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/text"
+        />
 
     <LinearLayout
         android:layout_below="@id/comTit"
@@ -37,12 +39,16 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:text="空气湿度"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:textColor="@color/text"
+                    />
                 <TextView
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Hum" />
+                    android:id="@+id/Hum"
+                    android:textColor="@color/text"
+                    />
             </LinearLayout>
 
             <ImageView
@@ -72,13 +78,17 @@
                     android:text="体感温度 "
                     android:layout_marginStart="12dp"
                     android:gravity="start"
+                    android:textColor="@color/text"
+
                     />
 
                 <TextView
                     android:id="@+id/Fi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text"
+                    />
 
             </LinearLayout>
             <LinearLayout
@@ -93,11 +103,14 @@
                     android:textSize="12sp"
                     android:text="紫外线指数 "
                     android:layout_marginStart="12dp"
-                    android:gravity="start" />
+                    android:gravity="start"
+                    android:textColor="@color/text"
+                    />
                 <TextView
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textColor="@color/text"
                     android:id="@+id/Hv" />
             </LinearLayout>
 

@@ -16,6 +16,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.admin.xinyueapp.R;
@@ -31,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -89,6 +91,8 @@ public class HomePageActivity extends StartActivity {
         toast.setGravity(Gravity.TOP,0,size.y / 18);
         toast.show();
     }
+
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

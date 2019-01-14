@@ -16,18 +16,11 @@
         android:minHeight="?attr/actionBarSize"
         app:title="@string/settings"
         app:titleTextColor="@color/white"/>
-
-    <Switch
-        android:id="@+id/switch_night"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="夜间模式"/>
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/background"/>
 
 
 </LinearLayout>
