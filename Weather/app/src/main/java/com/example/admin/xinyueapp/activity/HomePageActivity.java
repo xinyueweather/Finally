@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.admin.xinyueapp.entity.NightModeHelper;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -109,6 +110,7 @@ public class HomePageActivity extends StartActivity {
         fflush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
                 String cid = ((TextView) findViewById(R.id.showCity)).getText().toString();
                 intent.putExtra("cid", cid);
